@@ -1,0 +1,12 @@
+# CodeIgniter 4 Framework
+/writable/
+/vendor/
+.env
+.env.*.php
+node_modules/
+package-lock.json
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

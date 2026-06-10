@@ -1,0 +1,190 @@
+{
+  "info": {
+    "name": "CourseHub CI4 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "api_key",
+      "value": "pwl-course-demo-key"
+    }
+  ],
+  "item": [
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "GET Courses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": "{{base_url}}/api/courses"
+          }
+        },
+        {
+          "name": "GET Course Detail",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": "{{base_url}}/api/courses/1"
+          }
+        },
+        {
+          "name": "POST Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Laravel Dasar\",\n  \"category\": \"Framework PHP\",\n  \"description\": \"Kursus dasar Laravel untuk pemula dan praktik CRUD.\",\n  \"level\": \"pemula\",\n  \"price\": 200000,\n  \"status\": \"published\",\n  \"instructor_id\": 2,\n  \"thumbnail\": \"https://example.com/course.jpg\"\n}"
+            },
+            "url": "{{base_url}}/api/courses"
+          }
+        },
+        {
+          "name": "PUT Course",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Laravel Dasar Updated\",\n  \"category\": \"Framework PHP\",\n  \"description\": \"Kursus dasar Laravel yang sudah diperbarui.\",\n  \"level\": \"pemula\",\n  \"price\": 225000,\n  \"status\": \"published\",\n  \"instructor_id\": 2,\n  \"thumbnail\": \"https://example.com/course.jpg\"\n}"
+            },
+            "url": "{{base_url}}/api/courses/1"
+          }
+        },
+        {
+          "name": "DELETE Course",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": "{{base_url}}/api/courses/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Enrollments",
+      "item": [
+        {
+          "name": "GET Enrollments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": "{{base_url}}/api/enrollments"
+          }
+        },
+        {
+          "name": "GET Enrollment Detail",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": "{{base_url}}/api/enrollments/1"
+          }
+        },
+        {
+          "name": "POST Enrollment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 3,\n  \"course_id\": 1,\n  \"status\": \"aktif\",\n  \"progress\": 0\n}"
+            },
+            "url": "{{base_url}}/api/enrollments"
+          }
+        },
+        {
+          "name": "PUT Enrollment Progress",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 3,\n  \"course_id\": 1,\n  \"status\": \"aktif\",\n  \"progress\": 80\n}"
+            },
+            "url": "{{base_url}}/api/enrollments/1"
+          }
+        },
+        {
+          "name": "DELETE Enrollment",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-API-KEY",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": "{{base_url}}/api/enrollments/1"
+          }
+        }
+      ]
+    }
+  ]
+}
