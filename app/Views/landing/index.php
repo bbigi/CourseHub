@@ -12,7 +12,7 @@
         </div>
         <div class="d-none d-md-flex align-items-center gap-4 small fw-semibold">
             <a href="#fitur" class="text-dark">Fitur</a>
-            <a href="#parallax-demo" class="text-dark">Parallax</a>
+            <a href="#parallax-demo" class="text-dark">Platform</a>
             <a href="#kursus" class="text-dark">Kursus</a>
             <a href="#alur" class="text-dark">Alur</a>
         </div>
