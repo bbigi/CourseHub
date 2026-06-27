@@ -1,10 +1,14 @@
-CREATE DATABASE IF NOT EXISTS coursehub_ci4 CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE coursehub_ci4;
+CREATE DATABASE IF NOT EXISTS coursehub CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE coursehub;
 
 DROP TABLE IF EXISTS enrollments;
 DROP TABLE IF EXISTS lessons;
 DROP TABLE IF EXISTS courses;
-DROP TABLE IF EXISTS users;
+CREATE DATABASE IF NOT EXISTS `coursehub`;
+
+USE `coursehub`;
+
+DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE users (
   id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -74,3 +78,4 @@ INSERT INTO lessons (course_id, title, content, video_url, order_no, created_at,
 
 INSERT INTO enrollments (user_id, course_id, status, progress, enrolled_at, completed_at) VALUES
 (3, 2, 'aktif', 35, NOW(), NULL);
+

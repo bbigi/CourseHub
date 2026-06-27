@@ -61,6 +61,8 @@
 
 # session.driver = 'CodeIgniter\Session\Handlers\FileHandler'
 # session.savePath = null
+# SESSION_DRIVER = 'CodeIgniter\Session\Handlers\FileHandler'
+# SESSION_SAVE_PATH = 
 
 #--------------------------------------------------------------------
 # LOGGER

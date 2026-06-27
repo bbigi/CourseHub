@@ -523,17 +523,26 @@ Salin file environment:
 cp env .env
 ```
 
-Atur konfigurasi database pada file `.env`:
+Atur konfigurasi database pada file `.env` untuk development:
 
 ```env
 CI_ENVIRONMENT = development
 
-database.default.hostname = localhost
-database.default.database = coursehub_ci4
-database.default.username = root
-database.default.password =
-database.default.DBDriver = MySQLi
-database.default.port = 3306
+APP_BASE_URL = 'http://localhost:8080/'
+app.indexPage = ''
+app.forceGlobalSecureRequests = false
+
+DB_HOST = localhost
+DB_PORT = 3306
+DB_NAME = coursehub_ci4
+DB_USER = root
+DB_PASS = 
+DB_DRIVER = MySQLi
+DB_PREFIX = 
+
+SESSION_DRIVER = CodeIgniter\\Session\\Handlers\\FileHandler
+SESSION_SAVE_PATH = 
+WRITABLE_PATH = /tmp/coursehub-writable
 ```
 
 #### 4. Buat Database
@@ -548,6 +557,77 @@ CREATE DATABASE coursehub_ci4;
 
 ```bash
 php spark migrate
+```
+
+#### 6. Deploy ke Vercel
+
+1. Buat akun Vercel dan install Vercel CLI jika belum:
+
+```bash
+npm install -g vercel
+```
+
+2. Inisialisasi project:
+
+```bash
+vercel login
+vercel init
+```
+
+3. Pastikan file `vercel.json` ada di root project dan berisi konfigurasi PHP:
+
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "public/index.php",
+      "use": "@vercel/php"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1",
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.php"
+    }
+  ]
+}
+```
+
+4. Set environment variables di dashboard Vercel (Project Settings -> Environment Variables):
+
+- `CI_ENVIRONMENT = production`
+- `APP_BASE_URL = https://<your-vercel-domain>/`
+- `DB_HOST` = host MySQL eksternal
+- `DB_PORT` = 3306
+- `DB_NAME` = nama_database
+- `DB_USER` = username_db
+- `DB_PASS` = password_db
+- `DB_DRIVER` = MySQLi
+- `DB_PREFIX` = 
+- `WRITABLE_PATH = /tmp/coursehub-writable`
+- `SESSION_DRIVER = CodeIgniter\\Session\\Handlers\\FileHandler`
+- `SESSION_SAVE_PATH = /tmp/coursehub-writable/session`
+
+5. Deploy:
+
+```bash
+vercel --prod
+```
+
+6. Jika ingin menggunakan database MySQL eksternal gratis, bisa pakai:
+- PlanetScale
+- ClearDB
+- Google Cloud SQL
+- Amazon RDS
+
+> Vercel hanya menjalankan PHP, bukan MySQL. Jadi database harus terpisah.
+
 ```
 
 #### 6. Jalankan Seeder

@@ -37,6 +37,13 @@ if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
     chdir(FCPATH);
 }
 
+// Create a writable path when deploying to a readonly container runtime like Vercel.
+if ($writablePath = getenv('WRITABLE_PATH')) {
+    if (! is_dir($writablePath)) {
+        mkdir($writablePath, 0777, true);
+    }
+}
+
 /*
  *---------------------------------------------------------------
  * BOOTSTRAP THE APPLICATION
