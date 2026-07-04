@@ -62,6 +62,10 @@ class FileHandler extends BaseHandler
         $this->path = $options['storePath'] !== '' ? $options['storePath'] : WRITEPATH . 'cache';
         $this->path = rtrim($this->path, '\\/') . '/';
 
+        if (! is_dir($this->path) && ! @mkdir($this->path, 0755, true)) {
+            throw CacheException::forUnableToWrite($this->path);
+        }
+
         if (! is_really_writable($this->path)) {
             throw CacheException::forUnableToWrite($this->path);
         }
@@ -182,7 +186,7 @@ class FileHandler extends BaseHandler
 
     public function isSupported(): bool
     {
-        return is_writable($this->path);
+        return is_really_writable($this->path);
     }
 
     /**
